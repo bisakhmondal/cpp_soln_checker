@@ -3,7 +3,7 @@ This is useful to various online judge problem submission, for checking program 
 steps:
 1.create `in` & `out` file in any directory.
 
-2.add the directory name in script.
+2.add the directory name (`Dir` variable) in script.
 
 3.`source` the script.
 (use it on the current terminal)
