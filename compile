@@ -1,0 +1,26 @@
+#!/bin/bash
+# author: Bisakh
+function compile(){
+RED='\033[0;31m';
+Green='\033[0;32m';
+YELLOW="\033[33m";
+NORMAL="\033[0;39m"
+echo -e "${YELLOW}To compile with sanitizers pass 1${NORMAL}.";
+if  test "${1: -4}" != ".cpp";then
+echo -e "${RED}enter valid cpp file";
+return
+fi
+
+if test "$2" == "1";then
+echo "here";
+g++ -std=c++17 -Wshadow -Wall -o "${1%%.*}" "$(pwd)/$1" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG;
+else
+g++ -std=c++17 -Wshadow -Wall -o "${1%%.*}" "$(pwd)/$1" -O2 -Wno-unused-result;
+fi
+
+./${1%%.*} < "/home/bisakh/Desktop/in" > "out1"; 
+rm "${1%%.*}"; # no need to store binary file
+diff -w "/home/bisakh/Desktop/out" "out1" && echo -e "${Green} \tSuccessful" || echo -e "${RED}Error!!!!!!!!!!!!!!!!!!!";
+
+};   
+
