@@ -1,6 +1,10 @@
 #!/bin/bash
 # author: Bisakh
+
 function compile(){
+#use pwd to get current directory where you are saving in & out file
+Dir='<add here>'
+############
 RED='\033[0;31m';
 Green='\033[0;32m';
 YELLOW="\033[33m";
@@ -18,9 +22,9 @@ else
 g++ -std=c++17 -Wshadow -Wall -o "${1%%.*}" "$(pwd)/$1" -O2 -Wno-unused-result;
 fi
 
-./${1%%.*} < "/home/bisakh/Desktop/in" > "out1"; 
+./${1%%.*} < "${Dir}/in" > "out1"; 
 rm "${1%%.*}"; # no need to store binary file
-diff -w "/home/bisakh/Desktop/out" "out1" && echo -e "${Green} \tSuccessful" || echo -e "${RED}Error!!!!!!!!!!!!!!!!!!!";
+diff -w "${Dir}/out" "out1" && echo -e "${Green} \tSuccessful" || echo -e "${RED}\tError!!!!!!!!!!!!!!!!!!!";
 
 };   
 
